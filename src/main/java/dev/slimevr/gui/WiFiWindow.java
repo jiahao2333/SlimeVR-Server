@@ -39,8 +39,8 @@ public class WiFiWindow extends JFrame implements SerialListener {
 			JOptionPane
 				.showMessageDialog(
 					null,
-					"Unable to open a serial connection. Check that your drivers are installed and nothing is using the serial port already (like Cura or VScode or another slimeVR server)",
-					"SlimeVR: Serial connection error",
+					"无法打开串行连接。检查是否已安装驱动程序，并且没有任何设备正在使用串行端口（如Cura或VScode或其他slimeVR服务器）",
+					"嗨呀 连接出错啦",
 					JOptionPane.ERROR_MESSAGE
 				);
 		}
@@ -54,7 +54,7 @@ public class WiFiWindow extends JFrame implements SerialListener {
 			{
 				add(
 					new JLabel(
-						"Tracker connected to "
+						"跟踪器连接到 "
 							+ port.getSystemPortName()
 							+ " ("
 							+ port.getDescriptivePortName()
@@ -71,20 +71,20 @@ public class WiFiWindow extends JFrame implements SerialListener {
 				);
 				log.setLineWrap(true);
 				scroll.setAutoscrolls(true);
-				add(new JLabel("Enter WiFi credentials:"));
+				add(new JLabel("输入WIFI信息:"));
 				add(new EJBox(BoxLayout.LINE_AXIS) {
 					{
-						add(new JLabel("Network name:"));
+						add(new JLabel("wifi名:"));
 						add(ssidField = new JTextField(savedSSID));
 					}
 				});
 				add(new EJBox(BoxLayout.LINE_AXIS) {
 					{
-						add(new JLabel("Network password:"));
+						add(new JLabel("密码:"));
 						passwdField = new JPasswordField(savedPassword);
 						passwdField.setEchoChar('\u25cf');
 						add(passwdField);
-						add(new JCheckBox("Show Password") {
+						add(new JCheckBox("显示密码") {
 							{
 								addMouseListener(new MouseInputAdapter() {
 									@Override
@@ -99,7 +99,7 @@ public class WiFiWindow extends JFrame implements SerialListener {
 						});
 					}
 				});
-				add(new JButton("Send") {
+				add(new JButton("发送") {
 					{
 						addMouseListener(new MouseInputAdapter() {
 							@Override
@@ -139,7 +139,7 @@ public class WiFiWindow extends JFrame implements SerialListener {
 	@Override
 	@AWTThread
 	public void onSerialDisconnected() {
-		log.append("[SERVER] Serial port disconnected\n");
+		log.append("[SERVER] 端口失去连接\n");
 	}
 
 	@Override

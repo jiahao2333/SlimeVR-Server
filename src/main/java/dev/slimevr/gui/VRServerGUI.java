@@ -33,7 +33,7 @@ import static javax.swing.BoxLayout.PAGE_AXIS;
 
 public class VRServerGUI extends JFrame {
 
-	public static final String TITLE = "SlimeVR Server (" + Main.VERSION + ")";
+	public static final String TITLE = "SlimeVR Server 汉化BY：佳昊(" + Main.VERSION + ")";
 
 	public final VRServer server;
 	private final TrackersList trackersList;
@@ -186,7 +186,7 @@ public class VRServerGUI extends JFrame {
 				setBorder(new EmptyBorder(i(5)));
 
 				add(Box.createHorizontalGlue());
-				add(resetButton = new JButton("RESET") {
+				add(resetButton = new JButton("重置") {
 					{
 						addMouseListener(new MouseInputAdapter() {
 							@Override
@@ -197,7 +197,7 @@ public class VRServerGUI extends JFrame {
 					}
 				});
 				add(Box.createHorizontalStrut(10));
-				add(new JButton("Fast Reset") {
+				add(new JButton("马上重置") {
 					{
 						addMouseListener(new MouseInputAdapter() {
 							@Override
@@ -208,30 +208,30 @@ public class VRServerGUI extends JFrame {
 					}
 				});
 				add(Box.createHorizontalGlue());
-				add(new JButton("Record BVH") {
+				add(new JButton("录制BVH动捕文件") {
 					{
 						addMouseListener(new MouseInputAdapter() {
 							@Override
 							public void mouseClicked(MouseEvent e) {
 								if (!server.getBvhRecorder().isRecording()) {
-									setText("Stop Recording BVH...");
+									setText("正在停止录制");
 									server.getBvhRecorder().startRecording();
 								} else {
 									server.getBvhRecorder().endRecording();
-									setText("Record BVH");
+									setText("录制BVH动捕文件");
 								}
 							}
 						});
 					}
 				});
 				add(Box.createHorizontalGlue());
-				add(new JButton("GUI Zoom (x" + StringUtils.prettyNumber(zoom, 2) + ")") {
+				add(new JButton("UI缩放 (x" + StringUtils.prettyNumber(zoom, 2) + ")") {
 					{
 						addMouseListener(new MouseInputAdapter() {
 							@Override
 							public void mouseClicked(MouseEvent e) {
 								guiZoom();
-								setText("GUI Zoom (x" + StringUtils.prettyNumber(zoom, 2) + ")");
+								setText("UI缩放 (x" + StringUtils.prettyNumber(zoom, 2) + ")");
 							}
 						});
 					}
@@ -259,7 +259,7 @@ public class VRServerGUI extends JFrame {
 					{
 						setAlignmentY(TOP_ALIGNMENT);
 						JLabel l;
-						add(l = new JLabel("Trackers list"));
+						add(l = new JLabel("跟踪器列表"));
 						l.setFont(l.getFont().deriveFont(Font.BOLD));
 						l.setAlignmentX(0.5f);
 						add(trackersList);
@@ -272,7 +272,7 @@ public class VRServerGUI extends JFrame {
 						setAlignmentY(TOP_ALIGNMENT);
 
 						JCheckBox debugCb;
-						add(debugCb = new JCheckBox("Show debug information"));
+						add(debugCb = new JCheckBox("显示Debug信息"));
 						debugCb.setSelected(false);
 						debugCb.addActionListener(new ActionListener() {
 							@Override
@@ -282,7 +282,7 @@ public class VRServerGUI extends JFrame {
 						});
 
 						JLabel l;
-						add(l = new JLabel("Body proportions"));
+						add(l = new JLabel("身体比例"));
 						l.setFont(l.getFont().deriveFont(Font.BOLD));
 						l.setAlignmentX(0.5f);
 						add(new SkeletonConfigGUI(server, VRServerGUI.this));
@@ -290,17 +290,17 @@ public class VRServerGUI extends JFrame {
 						if (server.hasBridge(WindowsNamedPipeBridge.class)) {
 							WindowsNamedPipeBridge br = server
 								.getVRBridge(WindowsNamedPipeBridge.class);
-							add(l = new JLabel("SteamVR Trackers"));
+							add(l = new JLabel("SteamVR 跟踪器"));
 							l.setFont(l.getFont().deriveFont(Font.BOLD));
 							l.setAlignmentX(0.5f);
-							add(l = new JLabel("Changes may require restart of SteamVR"));
+							add(l = new JLabel("更改可能需要重新启动SteamVR"));
 							l.setFont(l.getFont().deriveFont(Font.ITALIC));
 							l.setAlignmentX(0.5f);
 
 							add(new EJBagNoStretch(false, true) {
 								{
 									JCheckBox waistCb;
-									add(waistCb = new JCheckBox("Waist"), c(1, 1));
+									add(waistCb = new JCheckBox("腰"), c(1, 1));
 									waistCb.setSelected(br.getShareSetting(TrackerRole.WAIST));
 									waistCb.addActionListener(new ActionListener() {
 										@Override
@@ -316,7 +316,7 @@ public class VRServerGUI extends JFrame {
 									});
 
 									JCheckBox legsCb;
-									add(legsCb = new JCheckBox("Feet"), c(2, 1));
+									add(legsCb = new JCheckBox("脚脚"), c(2, 1));
 									legsCb
 										.setSelected(
 											br.getShareSetting(TrackerRole.LEFT_FOOT)
@@ -341,7 +341,7 @@ public class VRServerGUI extends JFrame {
 									});
 
 									JCheckBox chestCb;
-									add(chestCb = new JCheckBox("Chest"), c(1, 2));
+									add(chestCb = new JCheckBox("胸胸"), c(1, 2));
 									chestCb.setSelected(br.getShareSetting(TrackerRole.CHEST));
 									chestCb.addActionListener(new ActionListener() {
 										@Override
@@ -357,7 +357,7 @@ public class VRServerGUI extends JFrame {
 									});
 
 									JCheckBox kneesCb;
-									add(kneesCb = new JCheckBox("Knees"), c(2, 2));
+									add(kneesCb = new JCheckBox("膝盖"), c(2, 2));
 									kneesCb
 										.setSelected(
 											br.getShareSetting(TrackerRole.LEFT_KNEE)
@@ -382,7 +382,7 @@ public class VRServerGUI extends JFrame {
 									});
 
 									JCheckBox elbowsCb;
-									add(elbowsCb = new JCheckBox("Elbows"), c(1, 3));
+									add(elbowsCb = new JCheckBox("肘部"), c(1, 3));
 									elbowsCb
 										.setSelected(
 											br.getShareSetting(TrackerRole.LEFT_ELBOW)
@@ -407,7 +407,7 @@ public class VRServerGUI extends JFrame {
 									});
 
 									JCheckBox handsCb;
-									add(handsCb = new JCheckBox("Hands"), c(2, 3));
+									add(handsCb = new JCheckBox("手"), c(2, 3));
 									handsCb
 										.setSelected(
 											br.getShareSetting(TrackerRole.LEFT_HAND)
@@ -436,14 +436,14 @@ public class VRServerGUI extends JFrame {
 							add(Box.createVerticalStrut(10));
 						}
 
-						add(l = new JLabel("Trackers filtering"));
+						add(l = new JLabel("跟踪器过滤"));
 						l.setFont(l.getFont().deriveFont(Font.BOLD));
 						l.setAlignmentX(0.5f);
 						add(trackersFiltersGUI);
 
 						add(Box.createVerticalStrut(10));
 
-						add(new JLabel("Skeleton data"));
+						add(new JLabel("骨架数据"));
 						add(skeletonList);
 						add(Box.createVerticalGlue());
 					}

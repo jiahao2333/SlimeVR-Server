@@ -238,13 +238,13 @@ public class TrackersList extends EJBoxNoStretch {
 				row++;
 			}
 			if (t.hasRotation())
-				add(new JLabel("Rotation"), c(0, row, 2, GridBagConstraints.FIRST_LINE_START));
+				add(new JLabel("旋转"), c(0, row, 2, GridBagConstraints.FIRST_LINE_START));
 			if (t.hasPosition())
-				add(new JLabel("Position"), c(1, row, 2, GridBagConstraints.FIRST_LINE_START));
+				add(new JLabel("位置"), c(1, row, 2, GridBagConstraints.FIRST_LINE_START));
 			add(new JLabel("TPS"), c(3, row, 2, GridBagConstraints.FIRST_LINE_START));
 			if (realTracker instanceof IMUTracker) {
-				add(new JLabel("Ping"), c(2, row, 2, GridBagConstraints.FIRST_LINE_START));
-				add(new JLabel("Signal"), c(4, row, 2, GridBagConstraints.FIRST_LINE_START));
+				add(new JLabel("延迟"), c(2, row, 2, GridBagConstraints.FIRST_LINE_START));
+				add(new JLabel("信号"), c(4, row, 2, GridBagConstraints.FIRST_LINE_START));
 			}
 			row++;
 			if (t.hasRotation())
@@ -270,17 +270,17 @@ public class TrackersList extends EJBoxNoStretch {
 				add(new JLabel(""), c(3, row, 2, GridBagConstraints.FIRST_LINE_START));
 			}
 			row++;
-			add(new JLabel("Status:"), c(0, row, 2, GridBagConstraints.FIRST_LINE_START));
+			add(new JLabel("状态:"), c(0, row, 2, GridBagConstraints.FIRST_LINE_START));
 			add(
 				status = new JLabel(t.getStatus().toString().toLowerCase()),
 				c(1, row, 2, GridBagConstraints.FIRST_LINE_START)
 			);
 			if (realTracker instanceof TrackerWithBattery) {
-				add(new JLabel("Battery:"), c(2, row, 2, GridBagConstraints.FIRST_LINE_START));
+				add(new JLabel("电池:"), c(2, row, 2, GridBagConstraints.FIRST_LINE_START));
 				add(bat = new JLabel("0"), c(3, row, 2, GridBagConstraints.FIRST_LINE_START));
 			}
 			row++;
-			add(new JLabel("Raw:"), c(0, row, 2, GridBagConstraints.FIRST_LINE_START));
+			add(new JLabel("原始数值:"), c(0, row, 2, GridBagConstraints.FIRST_LINE_START));
 			add(
 				raw = new JLabel("0 0 0"),
 				s(c(1, row, 2, GridBagConstraints.FIRST_LINE_START), 3, 1)
@@ -293,12 +293,12 @@ public class TrackersList extends EJBoxNoStretch {
 			row++;
 
 			if (debug && realTracker instanceof IMUTracker) {
-				add(new JLabel("Raw mag:"), c(0, row, 2, GridBagConstraints.FIRST_LINE_START));
+				add(new JLabel("原始MAG:"), c(0, row, 2, GridBagConstraints.FIRST_LINE_START));
 				add(
 					rawMag = new JLabel("0 0 0"),
 					s(c(1, row, 2, GridBagConstraints.FIRST_LINE_START), 3, 1)
 				);
-				add(new JLabel("Gyro fix:"), c(2, row, 2, GridBagConstraints.FIRST_LINE_START));
+				add(new JLabel("陀螺仪修正:"), c(2, row, 2, GridBagConstraints.FIRST_LINE_START));
 				add(
 					new JLabel(String.format("0x%8x", realTracker.hashCode())),
 					s(c(3, row, 2, GridBagConstraints.FIRST_LINE_START), 3, 1)

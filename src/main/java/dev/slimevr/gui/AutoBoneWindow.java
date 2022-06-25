@@ -37,7 +37,7 @@ public class AutoBoneWindow extends JFrame implements AutoBoneListener {
 	private JLabel lengthsLabel;
 
 	public AutoBoneWindow(VRServer server, SkeletonConfigGUI skeletonConfig) {
-		super("Skeleton Auto-Configuration");
+		super("骨架自动配置");
 
 		this.server = server;
 		this.skeletonConfig = skeletonConfig;
@@ -62,7 +62,7 @@ public class AutoBoneWindow extends JFrame implements AutoBoneListener {
 		pane.add(new EJBox(BoxLayout.LINE_AXIS) {
 			{
 				setBorder(new EmptyBorder(i(5)));
-				add(new JButton("Start Recording") {
+				add(new JButton("开始录制") {
 					{
 						addMouseListener(new MouseInputAdapter() {
 							@Override
@@ -77,7 +77,7 @@ public class AutoBoneWindow extends JFrame implements AutoBoneListener {
 					}
 				});
 
-				add(saveRecordingButton = new JButton("Save Recording") {
+				add(saveRecordingButton = new JButton("保存录制数据") {
 					{
 						setEnabled(false);
 						addMouseListener(new MouseInputAdapter() {
@@ -93,7 +93,7 @@ public class AutoBoneWindow extends JFrame implements AutoBoneListener {
 					}
 				});
 
-				add(new JButton("Auto-Adjust") {
+				add(new JButton("自动调整") {
 					{
 						addMouseListener(new MouseInputAdapter() {
 							@Override
@@ -108,7 +108,7 @@ public class AutoBoneWindow extends JFrame implements AutoBoneListener {
 					}
 				});
 
-				add(applyButton = new JButton("Apply Values") {
+				add(applyButton = new JButton("应用数值") {
 					{
 						setEnabled(false);
 						addMouseListener(new MouseInputAdapter() {
@@ -131,14 +131,14 @@ public class AutoBoneWindow extends JFrame implements AutoBoneListener {
 		pane.add(new EJBox(BoxLayout.LINE_AXIS) {
 			{
 				setBorder(new EmptyBorder(i(5)));
-				add(processLabel = new JLabel("Processing has not been started..."));
+				add(processLabel = new JLabel("尚未开始处理..."));
 			}
 		});
 
 		pane.add(new EJBox(BoxLayout.LINE_AXIS) {
 			{
 				setBorder(new EmptyBorder(i(5)));
-				add(lengthsLabel = new JLabel("No config changes"));
+				add(lengthsLabel = new JLabel("无配置更改"));
 			}
 		});
 

@@ -41,8 +41,8 @@ public class SkeletonConfigGUI extends EJBagNoStretch {
 
 			int row = 0;
 
-			add(new TimedResetButton("Reset All"), s(c(1, row, 2), 3, 1));
-			add(new JButton("Auto") {
+			add(new TimedResetButton("重置到原始"), s(c(1, row, 2), 3, 1));
+			add(new JButton("自动配置") {
 				{
 					addMouseListener(new MouseInputAdapter() {
 						@Override
@@ -54,7 +54,7 @@ public class SkeletonConfigGUI extends EJBagNoStretch {
 				}
 			}, s(c(4, row, 2), 3, 1));
 
-			add(precisionCb = new JCheckBox("Precision adjust"), c(0, row, 2));
+			add(precisionCb = new JCheckBox("精度调整"), c(0, row, 2));
 			precisionCb.setSelected(false);
 
 			row++;
@@ -70,10 +70,10 @@ public class SkeletonConfigGUI extends EJBagNoStretch {
 				switch (config) {
 					case TORSO:
 					case LEGS_LENGTH:
-						add(new TimedResetButton("Reset", config), c(4, row, 2));
+						add(new TimedResetButton("重置", config), c(4, row, 2));
 						break;
 					default:
-						add(new ResetButton("Reset", config), c(4, row, 2));
+						add(new ResetButton("重置", config), c(4, row, 2));
 						break;
 				}
 
