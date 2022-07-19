@@ -2,6 +2,7 @@ package dev.slimevr.vr.trackers;
 
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
+import dev.slimevr.vr.Device;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -52,6 +53,11 @@ public interface Tracker {
 
 	Device getDevice();
 
+	String getDisplayName();
+
+	String getCustomName();
+
+
 	/**
 	 * Returns the real tracker behind this tracker. In case this tracker
 	 * transforms another tracker like {@link ReferenceAdjustedTracker}, this
@@ -59,7 +65,5 @@ public interface Tracker {
 	 */
 	Tracker get();
 
-	default String getDescriptiveName() {
-		return getName();
-	}
+
 }

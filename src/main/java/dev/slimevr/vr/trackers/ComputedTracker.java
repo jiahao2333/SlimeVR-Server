@@ -2,7 +2,7 @@ package dev.slimevr.vr.trackers;
 
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
-import dev.slimevr.vr.trackers.udp.UDPDevice;
+import dev.slimevr.vr.Device;
 
 
 public class ComputedTracker implements Tracker, TrackerWithTPS {
@@ -14,6 +14,7 @@ public class ComputedTracker implements Tracker, TrackerWithTPS {
 	protected final boolean hasRotation;
 	protected final boolean hasPosition;
 	protected final int trackerId;
+	private final Device device;
 	public TrackerPosition bodyPosition = null;
 	protected TrackerStatus status = TrackerStatus.DISCONNECTED;
 
@@ -22,17 +23,19 @@ public class ComputedTracker implements Tracker, TrackerWithTPS {
 		String serial,
 		String name,
 		boolean hasRotation,
-		boolean hasPosition
+		boolean hasPosition,
+		Device device
 	) {
 		this.name = name;
 		this.serial = serial;
 		this.hasRotation = hasRotation;
 		this.hasPosition = hasPosition;
 		this.trackerId = trackerId;
+		this.device = device;
 	}
 
 	public ComputedTracker(int trackerId, String name, boolean hasRotation, boolean hasPosition) {
-		this(trackerId, name, name, hasRotation, hasPosition);
+		this(trackerId, name, name, hasRotation, hasPosition, null);
 	}
 
 	@Override
@@ -57,10 +60,6 @@ public class ComputedTracker implements Tracker, TrackerWithTPS {
 		return this.serial;
 	}
 
-	@Override
-	public String getDescriptiveName() {
-		return this.name;
-	}
 
 	@Override
 	public boolean getPosition(Vector3f store) {
@@ -150,12 +149,22 @@ public class ComputedTracker implements Tracker, TrackerWithTPS {
 	}
 
 	@Override
-	public UDPDevice getDevice() {
-		return null;
+	public Device getDevice() {
+		return device;
 	}
 
 	@Override
 	public Tracker get() {
 		return this;
+	}
+
+	@Override
+	public String getDisplayName() {
+		return getName();
+	}
+
+	@Override
+	public String getCustomName() {
+		return null;
 	}
 }

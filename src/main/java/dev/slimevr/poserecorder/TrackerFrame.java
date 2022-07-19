@@ -2,11 +2,11 @@ package dev.slimevr.poserecorder;
 
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
+import dev.slimevr.vr.Device;
 import dev.slimevr.vr.trackers.Tracker;
 import dev.slimevr.vr.trackers.TrackerConfig;
 import dev.slimevr.vr.trackers.TrackerPosition;
 import dev.slimevr.vr.trackers.TrackerStatus;
-import dev.slimevr.vr.trackers.udp.UDPDevice;
 
 
 public final class TrackerFrame implements Tracker {
@@ -189,12 +189,22 @@ public final class TrackerFrame implements Tracker {
 	}
 
 	@Override
-	public UDPDevice getDevice() {
+	public Device getDevice() {
 		return null;
 	}
 
 	@Override
 	public Tracker get() {
 		return this;
+	}
+
+	@Override
+	public String getDisplayName() {
+		return getName();
+	}
+
+	@Override
+	public String getCustomName() {
+		return null;
 	}
 }

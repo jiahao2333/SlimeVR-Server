@@ -1,19 +1,18 @@
 package dev.slimevr.vr.trackers.udp;
 
 import dev.slimevr.NetworkProtocol;
-import dev.slimevr.vr.trackers.Device;
+import dev.slimevr.vr.Device;
 import dev.slimevr.vr.trackers.IMUTracker;
+import dev.slimevr.vr.trackers.Tracker;
+import io.eiren.util.collections.FastList;
 
 import java.net.InetAddress;
 import java.net.SocketAddress;
-import java.util.HashMap;
-import java.util.Map;
 
 
-public class UDPDevice implements Device {
+public class UDPDevice extends Device {
 
 	public final int id;
-	public Map<Integer, IMUTracker> sensors = new HashMap<>();
 	public SocketAddress address;
 	public InetAddress ipAddress;
 	public long lastPacket = System.currentTimeMillis();
@@ -27,6 +26,7 @@ public class UDPDevice implements Device {
 	public NetworkProtocol protocol = null;
 	public int firmwareBuild = 0;
 	public boolean timedOut = false;
+	private final FastList<Tracker> trackers = new FastList<>();
 
 	public UDPDevice(SocketAddress address, InetAddress ipAddress) {
 		this.address = address;
@@ -49,5 +49,36 @@ public class UDPDevice implements Device {
 	@Override
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public String getManufacturer() {
+		return "SlimeVR";
+	}
+
+	@Override
+	public String getDisplayName() {
+		return name;
+	}
+
+	@Override
+	public String getFirmwareVersion() {
+		return "v" + firmwareBuild;
+	}
+
+	@Override
+	public String getCustomName() {
+		return name;
+	}
+
+	@Override
+	public FastList<Tracker> getTrackers() {
+		return this.trackers;
+	}
+
+	public IMUTracker getTracker(int id) {
+		if (id >= 0 && id < this.getTrackers().size())
+			return (IMUTracker) this.getTrackers().get(id);
+		return null;
 	}
 }
